@@ -3,6 +3,7 @@ package pl.mczuma.vouchershop.catalog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class HashMapProductStorage implements ProductStorage {
     private final HashMap<String, Product> products;
@@ -22,8 +23,8 @@ public class HashMapProductStorage implements ProductStorage {
     }
 
     @Override
-    public Product load(String productId) {
-        return products.get(productId);
+    public Optional<Product> load(String productId) {
+        return Optional.ofNullable(products.get(productId));
     }
 
     @Override

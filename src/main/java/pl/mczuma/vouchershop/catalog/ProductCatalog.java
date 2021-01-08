@@ -1,5 +1,7 @@
 package pl.mczuma.vouchershop.catalog;
 
+import pl.mczuma.vouchershop.catalog.exceptions.NoSuchProductException;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -23,17 +25,17 @@ public class ProductCatalog {
     }
 
     public Product load(String productId) {
-        return products.load(productId);
+        return getProductOrThrow(productId);
     }
 
     public void updateDetails(String productId, String productDesc, String productPicture) {
-        Product loaded = products.load(productId);
+        Product loaded = getProductOrThrow(productId);
         loaded.setDescription(productDesc);
         loaded.setPicture(productPicture);
     }
 
     public void applyPrice(String productId, BigDecimal price) {
-        Product loaded = products.load(productId);
+        Product loaded = getProductOrThrow(productId);
         loaded.setPrice(price);
     }
 
@@ -43,5 +45,10 @@ public class ProductCatalog {
                 .filter(p -> p.getDescription() != null)
                 .filter(p -> p.getPicture() != null)
                 .collect(Collectors.toList());
+    }
+
+    private Product getProductOrThrow(String productId) {
+        return products.load(productId)
+                .orElseThrow(() -> new NoSuchProductException(String.format("There is no product with id %s", productId)));
     }
 }

@@ -13,14 +13,10 @@ public class ProductCatalogConfiguration {
     }
 
     @Bean
-    ProductStorage mongoDBStorage(){
-        return null;
+    ProductStorage listProductStorage(){
+        return new ListProductStorage();
     }
 
-    @Bean
-    ProductStorage myHashMapProductStorage(){
-        return new HashMapProductStorage();
-    }
 
     @Bean
     ProductCatalog myFixtureAwareCatalog(ProductStorage productStorage){

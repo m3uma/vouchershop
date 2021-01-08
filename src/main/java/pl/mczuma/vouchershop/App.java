@@ -11,11 +11,11 @@ public class App {
     public static void main(String[] args){
         SpringApplication.run(App.class, args);
 
-        ProductCatalog catalog;
+        /*ProductCatalog catalog;
         if (System.getenv( "ENV").equals("dev")){
             catalog = new ProductCatalog(new HashMapProductStorage());
         } else{
             catalog = new ProductCatalog(new JdbcProductStorage());
-        }
+        }*/
     }
 }

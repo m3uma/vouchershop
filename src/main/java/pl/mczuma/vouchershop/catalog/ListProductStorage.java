@@ -1,12 +1,9 @@
 package pl.mczuma.vouchershop.catalog;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class ListProductStorage implements ProductStorage {
-    List <Product> products;
+    private final List <Product> products;
 
     public ListProductStorage() {
         this.products = new ArrayList<>();
@@ -19,25 +16,34 @@ public class ListProductStorage implements ProductStorage {
 
     @Override
     public boolean isExists(String productId) {
-        boolean ex = false;
+        return products
+                .stream()
+                .anyMatch(product -> product.getId().equals(productId));
+        /*boolean ex = false;
         for (Product p:products){
             if(p.getId().equals(productId)){
                 ex=true;
             }
         }
-        return ex;
+        return ex; */
     }
 
     @Override
-    public Product load(String productId) {
-        Optional<Product> pr = products.stream().filter(product -> product.getId().equals(productId)).findFirst();
-        return pr.get();
+    public Optional<Product> load(String productId) {
+        return products
+                .stream()
+                .filter(product -> product.getId().equals(productId))
+                .findFirst();
+
+        /*Optional<Product> pr = products.stream().filter(product -> product.getId().equals(productId)).findFirst();
+        return pr.get(); */
     }
 
     @Override
     public List<Product> allProducts() {
-        return products
+        return Collections.unmodifiableList(products);
+        /*return products
                 .stream()
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()); */
     }
 }

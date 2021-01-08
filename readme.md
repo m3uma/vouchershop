@@ -1,6 +1,6 @@
-##My Voucher store
+## My Voucher store
 
-###Tests
+### Tests
 
 ![Java CI](https://github.com/m3uma/vouchershop/workflows/Java%20CI/badge.svg)
 

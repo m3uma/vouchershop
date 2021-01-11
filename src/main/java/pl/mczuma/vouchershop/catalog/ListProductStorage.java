@@ -46,4 +46,9 @@ public class ListProductStorage implements ProductStorage {
                 .stream()
                 .collect(Collectors.toList()); */
     }
+
+    @Override
+    public void clean() {
+        products.clear();
+    }
 }

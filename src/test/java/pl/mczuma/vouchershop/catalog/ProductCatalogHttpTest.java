@@ -18,7 +18,6 @@ import static org.assertj.core.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductCatalogHttpTest {
-
     @LocalServerPort
     int port;
 
@@ -32,15 +31,14 @@ public class ProductCatalogHttpTest {
     public void emptyCatalog() {
         productCatalog.clean();
     }
-
     @Test
-    public void itShowsAllPublishedProducts(){
+    public void itShowsAllPublishedProducts() {
         //Arrange
         thereIsDraftProduct("draft product");
         thereIsReadyToSellProduct("product 1");
         thereIsReadyToSellProduct("product 2");
         //Act
-        var url = String.format("http://localhost%s/api/products", port);
+        var url = String.format("http://localhost:%s/api/products", port);
         ResponseEntity<Product[]> response =
                 testRestTemplate.getForEntity(url, Product[].class);
         //Assert
@@ -51,7 +49,9 @@ public class ProductCatalogHttpTest {
                 .hasSize(2)
                 .extracting(Product::getDescription)
                 .contains("product 1", "product 2")
-                .doesNotContain("draft product");
+                .doesNotContain("draft product")
+        ;
+
     }
 
     private void thereIsReadyToSellProduct(String name) {

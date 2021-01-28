@@ -15,8 +15,8 @@ public class SalesConfiguration {
     }
 
     @Bean
-    PaymentGateway paymentGateway() {
-        return null;
+    PaymentGateway payUPaymentGateway() {
+        return new PayUPaymentGateway();
     }
 
     @Bean

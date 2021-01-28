@@ -1,4 +1,4 @@
-package pl.mczuma.vouchershop.sales;
+package pl.mczuma.vouchershop.sales.basket;
 
 public class BasketItem {
     private final String productId;

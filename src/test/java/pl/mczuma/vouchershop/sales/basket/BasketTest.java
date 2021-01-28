@@ -1,7 +1,8 @@
-package pl.mczuma.vouchershop.sales;
+package pl.mczuma.vouchershop.sales.basket;
 
 import org.junit.Test;
 import pl.mczuma.vouchershop.catalog.Product;
+import pl.mczuma.vouchershop.sales.basket.Basket;
 
 import java.util.UUID;
 
@@ -68,19 +69,6 @@ public class BasketTest {
         basketContainsProductWithQuantity(basket, product2, 1);
     }
 
-    @Test
-    public void itAllowsToRemoveProduct(){
-        Basket basket = new Basket();
-        Product product1 = thereIsProduct("lego-1234");
-        Product product2 = thereIsProduct("lego-5678");
-
-        basket.add(product1);
-        basket.add(product1);
-        basket.add(product1);
-
-        basket.remove(product1.getId());
-        basketContainsProductWithQuantity(basket, product1,2);
-    }
 
     private void basketContainsProductWithQuantity(Basket basket, Product product1, int expectedQuantity) {
         assertThat(basket.getBasketItems())

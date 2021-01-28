@@ -1,8 +1,7 @@
-package pl.mczuma.vouchershop.sales;
+package pl.mczuma.vouchershop.sales.basket;
 
 import pl.mczuma.vouchershop.catalog.Product;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,20 +14,37 @@ public class Basket {
         this.productsQuantities = new HashMap<>();
     }
 
+    public static Basket empty() {
+        return new Basket();
+    }
+
     public boolean isEmpty() {
         return products.isEmpty();
     }
 
     public void add(Product product) {
         products.put(product.getId(), product);
-        if(productsQuantities.containsKey(product.getId())){
-            productsQuantities.put(
-                    product.getId(),
-                    productsQuantities.get(product.getId()) +1);
+        if(isProductInBasket(product)){
+            increaseQuantity(product);
         } else{
-            productsQuantities.put(product.getId(), 1);
+            putIntoBasket(product);
         }
 
+    }
+
+    private void putIntoBasket(Product product) {
+        productsQuantities.put(product.getId(), 1);
+        products.put(product.getId(), product);
+    }
+
+    private void increaseQuantity(Product product) {
+        productsQuantities.put(
+                product.getId(),
+                productsQuantities.get(product.getId()) +1);
+    }
+
+    private boolean isProductInBasket(Product product) {
+        return productsQuantities.containsKey(product.getId());
     }
 
     public Integer getProductsCount() {

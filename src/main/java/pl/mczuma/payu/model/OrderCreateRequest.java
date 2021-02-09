@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.mczuma.vouchershop.catalog.Product;
+import pl.mczuma.payu.model.Product;
 
 import java.util.List;
 

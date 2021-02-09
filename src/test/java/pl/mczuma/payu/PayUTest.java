@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-/*
+
 public class PayUTest {
     @Test
     public void itAllowsToRegisterPayment() throws PayUException {
@@ -72,7 +72,7 @@ public class PayUTest {
                 .products(Arrays.asList(
                         new Product("Wireless Mouse for Laptop", 15000, 1),
                         new Product("Battery AAA", 1000, 2)
-                ))
+               ))
                 .build();
     }
 
@@ -82,4 +82,4 @@ public class PayUTest {
                 new NetHttpClientPayuHttp()
         );
     }
-} */
+}
